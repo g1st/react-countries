@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Countries from './components/Countries';
+import Search from './components/Search';
+import { filterCountries } from './helpers';
 
 const App = () => {
   const [lightMode, setLightMode] = useState(true);
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     let isActive = true;
@@ -31,8 +34,13 @@ const App = () => {
       isActive = false;
     };
   }, []);
+
   const handleModeChange = () => {
     lightMode ? setLightMode(false) : setLightMode(true);
+  };
+
+  const handleSearch = (value) => {
+    setSearchValue(value);
   };
 
   let countriesComponent;
@@ -41,13 +49,17 @@ const App = () => {
   } else if (loading) {
     countriesComponent = <div>Loading...</div>;
   } else {
-    countriesComponent = <Countries countries={countries} />;
+    let filteredCountries = filterCountries(countries, searchValue);
+    countriesComponent = <Countries countries={filteredCountries} />;
   }
 
   return (
     <div className={lightMode ? 'light' : 'dark'}>
       <Header mode={lightMode} handleChange={handleModeChange} />
-      <main>{countriesComponent}</main>
+      <main>
+        <Search handleSearch={handleSearch} />
+        {countriesComponent}
+      </main>
     </div>
   );
 };
