@@ -1,7 +1,7 @@
 import React from 'react';
 import CountryCard from './CountryCard';
 
-const Countries = ({ countries }) => {
+const Countries = ({ countries, onCountrySelect }) => {
   return (
     <ul className="countries">
       {countries.map((country) => (
@@ -9,6 +9,7 @@ const Countries = ({ countries }) => {
           className="countries"
           key={country.name}
           country={country}
+          onCountrySelect={onCountrySelect}
         />
       ))}
     </ul>

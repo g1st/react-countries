@@ -30,3 +30,7 @@ export const getRegions = (countries) => {
     return regions;
   }, []);
 };
+
+export const getCountry = (countries, code) => {
+  return countries.filter((country) => country.alpha3Code === code)[0];
+};
