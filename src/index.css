@@ -110,10 +110,12 @@ main {
 }
 
 
+
 /* Search input */
 .search {
   padding: 3rem;
   max-width: 38rem;
+  width: 100%;
   display: flex;
 }
 
@@ -140,6 +142,29 @@ main {
 
 ::placeholder {
   color: var(--text);
+}
+
+/* Regions filter */
+.region-filter {
+  max-width: 38rem;
+  padding: 0 3em 3em 3em;
+}
+
+.region-filter select {
+  padding: 1.4em 1em;
+  font-size: 1rem;
+  background-color: var(--element);
+  color: var(--text);
+  border: none;
+  box-shadow: var(--card-shadow);
+  border-radius: 10px;
+  line-height: 3rem;
+  max-width: 16rem;
+  width: 100%;
+}
+
+.region-filter option {
+  font-size: 1rem;
 }
 
 /* Countries */
@@ -176,6 +201,15 @@ main {
 @media screen and (min-width: 600px) {
   :root {
     font-size: 16px;
+  }
+
+  .region-filter {
+    padding-top: 3em;
+  }
+
+  .filters-wrapper {
+    display: flex;
+    justify-content: space-between;
   }
 
   .country {

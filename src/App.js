@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Countries from './components/Countries';
 import Search from './components/Search';
-import { filterCountries } from './helpers';
+import Filter from './components/Filter';
+import { filterCountries, getRegions } from './helpers';
 
 const App = () => {
   const [lightMode, setLightMode] = useState(true);
@@ -10,6 +11,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [filterValue, setFilterValue] = useState('');
 
   useEffect(() => {
     let isActive = true;
@@ -43,13 +45,22 @@ const App = () => {
     setSearchValue(value);
   };
 
+  const handleFilter = (value) => {
+    setFilterValue(value);
+  };
+
   let countriesComponent;
   if (error) {
     countriesComponent = <div>{error.message}</div>;
   } else if (loading) {
     countriesComponent = <div>Loading...</div>;
   } else {
-    let filteredCountries = filterCountries(countries, searchValue);
+    let filteredCountries = filterCountries(
+      countries,
+      searchValue,
+      filterValue
+    );
+
     countriesComponent = <Countries countries={filteredCountries} />;
   }
 
@@ -57,7 +68,10 @@ const App = () => {
     <div className={lightMode ? 'light' : 'dark'}>
       <Header mode={lightMode} handleChange={handleModeChange} />
       <main>
-        <Search handleSearch={handleSearch} />
+        <div className="filters-wrapper">
+          <Search handleSearch={handleSearch} />
+          <Filter handleFilter={handleFilter} regions={getRegions(countries)} />
+        </div>
         {countriesComponent}
       </main>
     </div>
