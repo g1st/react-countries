@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
-function App() {
+
+const App = () => {
+  const [lightMode, setLightMode] = useState(true);
+
+  const handleModeChange = () => {
+    lightMode ? setLightMode(false) : setLightMode(true);
+  };
+
   return (
-    <div>
-      <Header />
+    <div className={lightMode ? 'light' : 'dark'}>
+      <Header mode={lightMode} handleChange={handleModeChange} />
       <main>app</main>
-      <footer>footer</footer>
     </div>
   );
-}
+};
 
 export default App;
