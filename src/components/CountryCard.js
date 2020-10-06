@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Country = ({ country: { name, capital, flag, population, region } }) => {
+const CountryCard = ({
+  country: { name, capital, flag, population, region },
+}) => {
   return (
     <li className="country">
       <img src={flag} alt={`Flag of ${name}`} />
@@ -23,4 +25,4 @@ const Country = ({ country: { name, capital, flag, population, region } }) => {
   );
 };
 
-export default Country;
+export default CountryCard;
