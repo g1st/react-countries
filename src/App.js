@@ -80,10 +80,11 @@ const App = () => {
         ) : (
           <>
             <div className="filters-wrapper">
-              <Search handleSearch={handleSearch} />
+              <Search handleSearch={handleSearch} value={searchValue} />
               <Filter
                 handleFilter={handleFilter}
                 regions={getRegions(countries)}
+                selected={filterValue}
               />
             </div>
             {countriesComponent}

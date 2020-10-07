@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Search = ({ handleSearch }) => {
+const Search = ({ handleSearch, value }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     handleSearch(value);
@@ -16,6 +16,7 @@ const Search = ({ handleSearch }) => {
         type="text"
         onChange={handleChange}
         placeholder="Search for a country..."
+        value={value}
       />
     </div>
   );
