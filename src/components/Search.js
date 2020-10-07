@@ -13,7 +13,7 @@ const Search = ({ handleSearch, value }) => {
       </div>
       <input
         className="search-input"
-        type="text"
+        type="search"
         onChange={handleChange}
         placeholder="Search for a country..."
         value={value}
