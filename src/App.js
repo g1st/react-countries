@@ -72,24 +72,26 @@ const App = () => {
     <div className={lightMode ? 'light' : 'dark'}>
       <Header mode={lightMode} handleChange={handleModeChange} />
       <main>
-        {country ? (
-          <Country
-            country={getCountry(countries, country)}
-            handleClick={setCountry}
-          />
-        ) : (
-          <>
-            <div className="filters-wrapper">
-              <Search handleSearch={handleSearch} value={searchValue} />
-              <Filter
-                handleFilter={handleFilter}
-                regions={getRegions(countries)}
-                selected={filterValue}
-              />
-            </div>
-            {countriesComponent}
-          </>
-        )}
+        <div className="container">
+          {country ? (
+            <Country
+              country={getCountry(countries, country)}
+              handleClick={setCountry}
+            />
+          ) : (
+            <>
+              <div className="filters-wrapper">
+                <Search handleSearch={handleSearch} value={searchValue} />
+                <Filter
+                  handleFilter={handleFilter}
+                  regions={getRegions(countries)}
+                  selected={filterValue}
+                />
+              </div>
+              {countriesComponent}
+            </>
+          )}
+        </div>
       </main>
     </div>
   );
